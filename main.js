@@ -50,6 +50,7 @@ function renderTable(){
             </td>
         `;
         tableBody.appendChild(row);
+        // saveData();
     });
 }
 
@@ -85,3 +86,14 @@ function deleteEmployee(index){
 //         renderTable();
 //     }
 // }
+
+window.addEventListener("load", function(){
+    if(localStorage.getItem('employees')){
+        employees = JSON.parse(localStorage.getItem('employees'));
+        renderTable();
+    }
+});
+
+window.addEventListener("beforeunload", function(){
+    localStorage.setItem('employees',JSON.stringify(employees));
+});
